@@ -31,8 +31,8 @@ const noPosts = function() {
 
 // Create a function that renders the list of blog posts if they exist. If not, call the no posts function.
 const renderBlogList = function() {
-    const blogPosts = JSON.parse(localStorage.getItem('blogPosts'));
-    if (blogPosts) {
+    const blogPosts = readLocalStorage();
+    if (blogPosts && blogPosts.length > 0) {
         for (post of blogPosts) {
             renderPost(post);
         }

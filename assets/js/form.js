@@ -10,23 +10,25 @@ const submitForm = function(event) {
     // Prevent the default action on form submission
     event.preventDefault();
 
+    // Get form data
+    const usernameField = formEl.querySelector('#username').value;
+    const titleField = formEl.querySelector('#title').value;
+    const contentField = formEl.querySelector('#content').value;
+
     // Check if any of the fields are empty
-    if (!formEl.checkValidity()) {
+    if (!usernameField || !titleField || !contentField) {
         formEl.querySelector('#error').textContent = "Please complete the form.";
         return;
     }
 
     // Create an object for the blog post
-    const post = {
-        username: formEl.querySelector('#username').value,
-        title: formEl.querySelector('#title').value,
-        content: formEl.querySelector('#content').value,
+    const blogPost = {
+        username: usernameField,
+        title: titleField,
+        content: contentField,
     }
 
-    // Store the blog post object in local storage
-    const postsArray = JSON.parse(localStorage.getItem('blogPosts')) || [];
-    postsArray.push(post);
-    localStorage.setItem('blogPosts', JSON.stringify(postsArray));
+    storeLocalStorage(blogPost);
 
     // Redirect to the blog page after a valid submission
     redirectPage("blog.html");
@@ -34,4 +36,4 @@ const submitForm = function(event) {
 }
 
 // Add an event listener to the form on submit. 
-formEl.querySelector('#submit').addEventListener('click', submitForm);
+formEl.addEventListener('submit', submitForm);

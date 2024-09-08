@@ -24,6 +24,7 @@ const renderPost = function(blogPost) {
 
 // Create a function that handles the case where there are no blog posts to display
 const noPosts = function() {
+    mainEl.innerHTML = '';
     const errorEl = document.createElement('p');
     errorEl.textContent = "No blog posts yet...";
     mainEl.appendChild(errorEl);

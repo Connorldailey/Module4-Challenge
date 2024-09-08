@@ -21,7 +21,7 @@ toggleEl.addEventListener('click', function() {
 // Create a function called `readLocalStorage` that reads from local storage and returns the data. If no data exists, return an empty array.
 const readLocalStorage = function() {
   const storage = localStorage.getItem('blogPosts');
-  if (storage) {
+  if (storage && storage.length > 0) {
     return JSON.parse(storage);
   } else {
     return [];
@@ -32,7 +32,7 @@ const readLocalStorage = function() {
 const storeLocalStorage = function(blogPost) {
   
   // Get the existing blog posts from local storage
-  const storedPosts = readLocalStorage()
+  const storedPosts = readLocalStorage();
 
   // Add the new blog post to the array of posts
   storedPosts.push(blogPost);
